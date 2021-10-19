@@ -3,7 +3,7 @@ from datetime import datetime
 import git
 from os import path
 
-git_url = "https://github.com/jsfillman/static-content.git"
+git_url = "https://github.com/kbase/static-content.git"
 # set the project root directory as the static folder, you can set others.
 app = Flask(__name__, static_url_path='')
 
