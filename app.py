@@ -9,7 +9,8 @@ app = Flask(__name__, static_url_path='')
 
 # This route serves static/index.html at the route /
 @app.route("/")
-def index():
+@app.route("/<path:subpath>")
+def index(subpath):
   if path.exists('./static'):
     return app.send_static_file('index.html')
   else:
