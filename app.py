@@ -7,8 +7,8 @@ git_url = "https://github.com/kbase/static-content.git"
 # set the project root directory as the static folder, you can set others.
 app = Flask(__name__, static_url_path='')
 
-# This route serves static/index.html at the route /
-@app.route("/", defaults={'subpath': ""})
+# This route serves static/index.html at the route / and it's subpaths
+@app.route("/", defaults={"subpath": ""})
 @app.route("/<path:subpath>")
 def index(subpath):
   if path.exists('./static'):
