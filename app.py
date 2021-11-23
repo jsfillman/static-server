@@ -7,16 +7,8 @@ git_url = "https://github.com/jsfillman/static-content.git"
 # set the project root directory as the static folder, you can set others.
 app = Flask(__name__, static_url_path='')
 
-# This route serves static/index.html at the route /
-@app.route("/")
-def index():
-  if path.exists('./static'):
-    return app.send_static_file('index.html')
-  else:
-    d = git.Repo.clone_from(git_url, 'static')
-    return app.send_static_file('index.html')
 
-
+# Pull repo on get `/pull`
 @app.route("/pull")
 def pull():
   if path.exists('./static'):
@@ -26,6 +18,16 @@ def pull():
   else:
     d = git.Repo.clone_from(git_url, 'static')
     return "<p>Repo Cloned!</p>"
+
+# This route serves static/index.html at the route / and it's subpaths
+@app.route("/", defaults={"subpath": ""})
+@app.route("/<path:subpath>")
+def index(subpath):
+  if path.exists('./static'):
+    return app.send_static_file('index.html')
+  else:
+    d = git.Repo.clone_from(git_url, 'static')
+    return app.send_static_file('index.html')
 
 
 if __name__ == "__main__":
