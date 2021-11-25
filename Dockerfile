@@ -21,7 +21,7 @@ COPY requirements.txt /requirements.txt
 RUN pip3 install --upgrade pip && \
     pip install -r /requirements.txt
 
-COPY . .
+COPY . /static-server/
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.vcs-url="https://github.com/jsfillman/static-server.git" \
@@ -33,5 +33,5 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 
 ENV COMMIT_SHA=${COMMIT}
 
+WORKDIR /static-server
 ENTRYPOINT ["python3", "./app.py"]
-#ENTRYPOINT ["python", "-m", "flask", "run", "--host=0.0.0.0"]
