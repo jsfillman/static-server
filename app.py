@@ -9,7 +9,7 @@ app = Flask(__name__, static_url_path='')
 
 
 # Pull repo on get `/pull`
-@app.route("/pull")
+@app.route("/")
 def pull():
   if path.exists('./static'):
     d = git.cmd.Git('static')
@@ -20,14 +20,14 @@ def pull():
     return "<p>Repo Cloned!</p>"
 
 # This route serves static/index.html at the route / and it's subpaths
-@app.route("/", defaults={"subpath": ""})
-@app.route("/<path:subpath>")
-def index(subpath):
-  if path.exists('./static'):
-    return app.send_static_file('index.html')
-  else:
-    d = git.Repo.clone_from(git_url, 'static')
-    return app.send_static_file('index.html')
+# @app.route("/", defaults={"subpath": ""})
+# @app.route("/<path:subpath>")
+# def index(subpath):
+#   if path.exists('./static'):
+#     return app.send_static_file('index.html')
+#   else:
+#     d = git.Repo.clone_from(git_url, 'static')
+#     return app.send_static_file('index.html')
 
 
 if __name__ == "__main__":
