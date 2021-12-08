@@ -11,7 +11,7 @@ app = Flask(__name__, static_url_path='')
 # Pull repo on get `/pull`
 @app.route("/")
 def pull():
-  if path.exists('./static'):
+  if path.exists('./static/index.html'):
     d = git.cmd.Git('static')
     d.pull()
     return "<p>Repo Updated!</p>"
