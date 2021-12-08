@@ -1,4 +1,4 @@
-FROM bitnami/minideb:latest
+FROM bitnami/nginx:latest
 
 # Build arguments passed into the docker command for image metadata
 ARG BUILD_DATE
