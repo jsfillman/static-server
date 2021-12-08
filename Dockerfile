@@ -1,4 +1,5 @@
 FROM bitnami/nginx:latest
+USER root
 
 # Build arguments passed into the docker command for image metadata
 ARG BUILD_DATE
